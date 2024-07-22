@@ -134,9 +134,9 @@ def convert_rtf(item,file_no):
     # print("Data Successfully written for file: ",file_no)
 
 
-directory = '/Users/adithi/Desktop/jenkins_folder'
+directory = '/Users/adithi/Desktop/jenkins_folder_2'
 contents = os.listdir(directory)
-newdir = '/Users/adithi/Desktop/jenkins_output_folder'
+newdir = '/Users/adithi/Desktop/jenkins_output_folder_2'
 os.mkdir(newdir)
 file_no = 0
 for item in contents:
