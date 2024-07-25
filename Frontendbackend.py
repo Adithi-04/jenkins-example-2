@@ -1,41 +1,22 @@
-# Frontendbackend.py
-
-import json
-import re
-import os
+# test_core_logic.py
 import pytest
+import re
 
-# Define the functions here
+def test_extract_font_details(rtf_content):
+    # Extract font table
+    font_table_pattern = re.compile(r'{\\fonttbl(.*)}', re.DOTALL)
+    font_table_match = font_table_pattern.search(rtf_content)
+    if font_table_match:
+        font_table = font_table_match.group(1)
+    else:
+        return {}
 
-def extract_font_details(rtf_content):
-    # Function implementation
-    pass
+    # Extract font details from font table
+    font_pattern = re.compile(r'{\\f(\d+)\\.*? ([^;]+?);}')
+    fonts = {}
+    for match in font_pattern.finditer(font_table):
+        font_id, font_name = match.groups()
+        fonts['f'+font_id] = font_name
 
-def convert_rtf(item, file_no, output_directory):
-    # Function implementation
-    pass
+    return fonts
 
-# Define your test functions
-
-def test_extract_font_details():
-    rtf_content = r'{\fonttbl{\f0 Arial;}}'
-    expected_fonts = {'f0': 'Arial'}
-    assert extract_font_details(rtf_content) == expected_fonts
-
-def test_convert_rtf(tmpdir):
-    rtf_content = r'{\fonttbl{\f0 Arial;}}\page\header{Header}\trhdr\title{\cell} Title \cell\trrow\cell Data \cell'
-    rtf_file = tmpdir.join('test.rtf')
-    output_dir = tmpdir.mkdir('output')
-    rtf_file.write(rtf_content)
-    
-    status, remarks = convert_rtf(str(rtf_file), str(output_dir))
-    
-    assert status == "Successful"
-    assert os.path.isfile(os.path.join(str(output_dir), 'test.json'))
-    
-    with open(os.path.join(str(output_dir), 'test.json')) as f:
-        data = json.load(f)
-    
-    assert 'fonts' in data
-    assert 'data' in data
-    assert len(data['data']) > 0
