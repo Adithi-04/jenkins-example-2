@@ -1,3 +1,5 @@
+
+import re
 def extract_font_details(rtf_content):
     # Extract font table
     font_table_pattern = re.compile(r'{\\fonttbl(.*)}', re.DOTALL)
