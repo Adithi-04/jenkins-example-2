@@ -17,7 +17,7 @@ def extract_font_details(rtf_content):
         font_id, font_name = match.groups()
         fonts['f'+font_id] = font_name
 
-    return fonts
+    fonts = extract_font_details(rtf_content)
 
 def test_extract_font_details():
     rtf_content = r'{\fonttbl{\f0 Arial;}}'
