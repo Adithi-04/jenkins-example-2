@@ -1,8 +1,7 @@
-# test_core_logic.py
 import pytest
 import re
 
-def test_extract_font_details(rtf_content):
+def extract_font_details(rtf_content):
     # Extract font table
     font_table_pattern = re.compile(r'{\\fonttbl(.*)}', re.DOTALL)
     font_table_match = font_table_pattern.search(rtf_content)
@@ -20,3 +19,5 @@ def test_extract_font_details(rtf_content):
 
     return fonts
 
+def test_extract_font_details():
+    rtf_content = r'{\fonttbl{\f0 Arial;}}'
