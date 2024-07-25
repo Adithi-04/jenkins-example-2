@@ -21,3 +21,5 @@ def extract_font_details(rtf_content):
 
 def test_extract_font_details():
     rtf_content = r'{\fonttbl{\f0 Arial;}}'
+    output = {'f0': 'Arial'}
+    assert extract_font_details(rtf_content) == output
