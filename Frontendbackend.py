@@ -1,9 +1,11 @@
-# test_core_logic.py
+# Frontendbackend.py
 
 import pytest
-import os
 import json
-from core_logic import extract_font_details, convert_rtf
+import re
+import os
+
+# Define your functions here
 
 def test_extract_font_details():
     rtf_content = r'{\fonttbl{\f0 Arial;}}'
