@@ -378,5 +378,15 @@ def test_extract_title():
             assert actual_output == expected_output
     except:
         print(f"AssertionError:")
-
+      
+#test function to extract footnotes
+def test_extract_footnotes():
+    try:
+        with open('/Users/adithi/Desktop/jenkins_folder/L-16-01-07-random.rtf', 'r') as file:
+            rtf_content = file.read()
+            expected_output = "Footnotes extracted successfully"
+            actual_output = extract_footnotes(rtf_content)
+            assert actual_output == expected_output
+    except:
+        print(f"Assertion Error:") 
 
